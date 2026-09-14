@@ -1,0 +1,37 @@
+# ============================================================
+# .gitignore — usame.sh (bash + python3)
+# ============================================================
+
+# --- Estado del entorno del usuario ---
+hydra.restore
+
+# --- Carpetas ajenas al proyecto ---
+capitaine-cursors/
+CVE-2026-4480-POC/
+
+# --- Salidas generadas por usame.sh ---
+escaneos/
+
+# --- Compiled Python / cache ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.py[cod]
+
+# --- OS junk ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Editors ---
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# --- Temp files ---
+*.tmp
+*.bak
+*.log
