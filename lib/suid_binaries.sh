@@ -1,7 +1,18 @@
 #!/bin/bash
 # ============================================================
-# suid_binaries.sh - Binarios SUID explotables (GTFOBins)
-# Para HTB Recon Guiado
+# suid_binaries.sh - Binarios SUID / escalada (Libreria)
+#
+# Que hace: catalogo GTFOBins de binarios SUID explotables y
+#   escaladas via sudo, con categoria y descripcion. Escanea
+#   SUID en el target si hay XML de scan.
+#
+# Exporta (se sourcea desde SMOKEME.sh):
+#   Arrays    : SUID_EXPLOIT, SUID_CATEGORY, SUID_DESCRIPTION
+#   Funciones : get_suid_exploit, get_suid_exploits_by_category,
+#               get_all_suid_exploits, get_sudo_escalation,
+#               scan_suid_binaries.
+#
+# No es ejecutable por si sola; es un modulo de datos.
 # ============================================================
 
 declare -gA SUID_EXPLOIT

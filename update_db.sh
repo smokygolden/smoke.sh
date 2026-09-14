@@ -1,18 +1,22 @@
 #!/bin/bash
 # ============================================================
-# update_db.sh - Actualizador de base de datos CVE para SMOKEME.sh
+# update_db.sh - Actualizador de base de datos CVE (utilidad)
 #
-# Actualiza las bases de datos de CVEs (cve_linux.sh y
-# cve_windows.sh) consultando la API NVD.
+# Que hace: actualiza las bases de datos de CVEs de SMOKEME.sh
+#   (lib/cve_linux.sh y lib/cve_windows.sh) consultando la API
+#   NVD 2.0 y validando el CPE con lib/nvd_parser.py. Crea
+#   backups antes de modificar.
 #
+# Alternativa integrada: SMOKEME.sh --update-db (misma logica).
+#
+# Requiere: curl, python3, gzip
+# ============================================================
 # Uso:
 #   ./update_db.sh              # actualiza ambas BD
 #   ./update_db.sh --linux      # solo Linux
 #   ./update_db.sh --windows    # solo Windows
 #   ./update_db.sh --no-backup  # sin backups
 #   sudo ./SMOKEME.sh --update-db # via SMOKEME.sh (alternativa)
-#
-# Requiere: curl, python3, gzip
 # ============================================================
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"

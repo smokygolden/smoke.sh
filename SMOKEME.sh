@@ -1,9 +1,15 @@
 #!/bin/bash
 # ============================================================
-# SMOKEME.sh - Recon Guiado para Hack The Box v5.0
-# Escanea, detecta servicios, genera reporte guiado
-# con CVEs, auto-explotacion, privesc, post-explotacion,
-# stealth mode, batch, wordlist, tracker, diff, auto-update.
+# SMOKEME.sh - Recon Guiado para Hack The Box v5.0 (script principal)
+#
+# Que hace: automatiza el escaneo nmap, detecta servicios y SO,
+#   genera reportes guiados con CVEs, auto-explotacion, privesc,
+#   post-explotacion, wordlists, tracker, diff y batch mode.
+#
+# Dependencias: ver REQUIREMENTS.md (nmap + bash 4+ obligatorio;
+#   python3/curl/firefox/lolcat opcionales).
+# Recursos: carga las librerias de ./lib/* (services, cve_*, creds,
+#   postexploitation, suid, wordlists).
 #
 # Uso:
 #   sudo ./SMOKEME.sh <target>

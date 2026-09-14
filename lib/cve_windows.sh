@@ -1,7 +1,20 @@
 #!/bin/bash
 # ============================================================
-# cve_windows.sh - CVEs y vulnerabilidades de Windows
-# Para HTB Recon Guiado
+# cve_windows.sh - CVEs de Windows (Libreria)
+#
+# Que hace: base de datos de ~50 CVEs de Windows con descripcion,
+#   productos afectados, exploit y severidad. Consultas para el
+#   reporte guiado y vectores de privesc/lateral/AD.
+#
+# Exporta (se sourcea desde SMOKEME.sh):
+#   Arrays    : CVE_WIN_DESCRIPTION, CVE_WIN_AFFECTED,
+#               CVE_WIN_EXPLOIT, CVE_WIN_SEVERITY
+#   Funciones : get_windows_cve_info, get_windows_cve_by_severity,
+#               get_windows_cve_by_product, get_windows_privesc_vectors,
+#               get_windows_lateral_movement, get_windows_ad_attack,
+#               windows_cve_terms
+#
+# No es ejecutable por si sola; es un modulo de datos.
 # ============================================================
 
 declare -gA CVE_WIN_DESCRIPTION

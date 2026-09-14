@@ -1,7 +1,17 @@
 #!/bin/bash
 # ============================================================
-# default_creds.sh - Base de datos de credenciales por defecto
-# Para HTB Recon Guiado
+# default_creds.sh - Credenciales por defecto (Libreria)
+#
+# Que hace: base de datos de credenciales por defecto de 60+
+#   servicios (web, BD, red, mail, VPN) con puerto y notas, y
+#   funciones de consulta/busqueda para el reporte guiado.
+#
+# Exporta (se sourcea desde SMOKEME.sh):
+#   Arrays    : DC_SERVICE, DC_CREDS, DC_NOTES, DC_PORT
+#   Funciones : check_default_creds <svc> <port> <target>,
+#               get_all_default_creds, search_default_creds.
+#
+# No es ejecutable por si sola; es un modulo de datos.
 # ============================================================
 
 declare -gA DC_SERVICE

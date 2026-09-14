@@ -1,7 +1,20 @@
 #!/bin/bash
 # ============================================================
-# cve_linux.sh - CVEs y vulnerabilidades de Linux
-# Para HTB Recon Guiado
+# cve_linux.sh - CVEs de Linux (Libreria)
+#
+# Que hace: base de datos de ~80 CVEs de Linux con descripcion,
+#   productos afectados, exploit y severidad. Consultas para el
+#   reporte guiado y vectores de privesc/lateral/post-enum.
+#
+# Exporta (se sourcea desde SMOKEME.sh):
+#   Arrays    : CVE_LIN_DESCRIPTION, CVE_LIN_AFFECTED,
+#               CVE_LIN_EXPLOIT, CVE_LIN_SEVERITY
+#   Funciones : get_linux_cve_info, get_linux_cve_by_severity,
+#               get_linux_cve_by_product, get_linux_privesc_vectors,
+#               get_linux_lateral_movement, get_linux_post_enumeration,
+#               linux_cve_terms
+#
+# No es ejecutable por si sola; es un modulo de datos.
 # ============================================================
 
 declare -gA CVE_LIN_DESCRIPTION

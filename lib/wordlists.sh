@@ -1,7 +1,15 @@
 #!/bin/bash
 # ============================================================
-# wordlists.sh - Wordlists recomendadas por escenario
-# Para HTB Recon Guiado
+# wordlists.sh - Wordlists por escenario (Libreria)
+#
+# Que hace: recomienda wordlists y rutas segun la categoria:
+#   directorios, subdominios, passwords, usuarios, vhosts,
+#   params, CMS (WP/Joomla/Drupal), SSH y archivos sensibles.
+#
+# Exporta (se sourcea desde SMOKEME.sh), solo consultas, no
+#   ejecuta: WL_DIRS, WL_SUBDOMAINS, WL_PASSWORDS, WL_USERS,
+#   WL_VHOSTS, WL_PARAMS, WL_WORDPRESS, WL_JOOMLA, WL_DRUPAL,
+#   WL_SSHKEYS, WL_SENSITIVE_FILES, show_wordlists.
 # ============================================================
 
 # ============================================================

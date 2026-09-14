@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
-"""nvd_parser.py - Parsea respuestas de la API NVD 2.0 con validacion CPE.
+"""nvd_parser.py - Parser de la API NVD 2.0 (Libreria/helper).
+
+Que hace: filtra el JSON de la API NVD validando el CPE contra el
+producto buscado y devuelve solo los CVE que aplican, en formato:
+    CVE_ID|descripcion|severidad|producto_real
 
 Uso: echo "<json>" | python3 nvd_parser.py <query>
 
-Solo imprime entradas CVE cuyo CPE coincida con el producto buscado.
-Formato salida: CVE_ID|descripcion|severidad|producto_real
+Lo usan: update_db.sh y SMOKEME.sh --update-db.
 """
 import json
 import re

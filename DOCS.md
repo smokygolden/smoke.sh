@@ -12,18 +12,25 @@ Script de recon guiado para HTB/Pentesting. Escanea objetivos con nmap, analiza 
 
 ## Arquitectura de Archivos
 
-```
-tools/
-  SMOKEME.sh                  # Script principal (bash)
-  lib/
-    services.sh             # Base de conocimiento: 42+ servicios con pasos, herramientas, vulns
-    cve_linux.sh            # CVEs Linux: ~80 entradas con descripcion, exploit, severidad
-    cve_windows.sh          # CVEs Windows: ~50 entradas con descripcion, exploit, severidad
-    postexploitation.sh     # Funciones: reverse shells, privesc, lateral movement, tools
-    default_creds.sh        # Credenciales por defecto: 60+ servicios (web, DB, red, mail, VPN)
-    suid_binaries.sh        # Binarios SUID explotables (GTFOBins) + escalada via sudo
-    wordlists.sh            # Wordlists por escenario (10 categorias)
-```
+**Archivos ejecutables (raiz):**
+
+| Archivo | Tipo | Funcion |
+|---------|------|---------|
+| `SMOKEME.sh` | Script principal | Harness de recon: escaneo nmap, reporte guiado, auto-exploit, privesc, batch, tracker, diff. Carga todas las librerias de `lib/`. |
+| `update_db.sh` | Utilidad | Actualizador independiente de la base de datos CVE (NVD API + `lib/nvd_parser.py`). Alternativa a `SMOKEME.sh --update-db`. |
+
+**Librerias (`lib/`) — no ejecutables, se sourcean desde `SMOKEME.sh`:**
+
+| Archivo | Modulo | Que exporta | Que hace |
+|---------|--------|-------------|----------|
+| `services.sh` | Base de conocimiento | `SVC_STEPS/TOOLS/VULNS/DIFFICULTY/DESCRIPTION`, `get_service_info()` | 42+ servicios documentados con pasos, herramientas, vulns y descripcion. Detecta servicio/producto/version por puerto desde el XML. |
+| `cve_linux.sh` | CVEs Linux | `CVE_LIN_DESCRIPTION/AFFECTED/EXPLOIT/SEVERITY`, `get_linux_*()` | ~80 CVEs de Linux (descripcion, afectados, exploit, severidad) y consultas por producto/severidad + vectores privesc/lateral/post-enum. |
+| `cve_windows.sh` | CVEs Windows | `CVE_WIN_DESCRIPTION/AFFECTED/EXPLOIT/SEVERITY`, `get_windows_*()` | ~50 CVEs de Windows + consultas y vectores de privesc/lateral/ataques AD. |
+| `postexploitation.sh` | Post-explotacion | `get_reverse_shells`, `get_bind_shells`, `get_webshells`, `get_file_transfer`, `get_persistence`, `get_tty_stabilization`, `get_useful_tools` | Genera comandos listos: reverse/bind shells, webshells, TTY, transferencia, persistencia y herramientas. |
+| `default_creds.sh` | Credenciales | `DC_SERVICE/CREDS/NOTES/PORT`, `check_default_creds()`, `get_all_default_creds()`, `search_default_creds()` | 60+ servicios con credenciales por defecto, puerto y notas. |
+| `suid_binaries.sh` | SUID / escalada | `SUID_EXPLOIT/CATEGORY/DESCRIPTION`, `get_suid_exploits*()`, `get_sudo_escalation()`, `scan_suid_binaries()` | Catalogo GTFOBins de binarios SUID explotables y escaladas via sudo. |
+| `wordlists.sh` | Wordlists | `WL_*()` (dirs, subdominios, pass, users, vhosts, params, CMS, SSH, sensibles), `show_wordlists()` | Recomienda wordlists y rutas por escenario (10 categorias). |
+| `nvd_parser.py` | Helper Python | Filtra JSON de NVD validando CPE | `echo "<json>" \| python3 nvd_parser.py <query>` -> `CVE_ID\|desc\|severidad\|producto`. Lo usan `update_db.sh` y `SMOKEME.sh --update-db`. |
 
 ## Nota critica sobre arrays
 

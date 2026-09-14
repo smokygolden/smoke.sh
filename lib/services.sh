@@ -1,7 +1,18 @@
 #!/bin/bash
 # ============================================================
-# services.sh - Base de conocimiento de servicios
-# Cada servicio tiene: pasos, herramientas, vulns, CVEs
+# services.sh - Base de conocimiento de servicios (Libreria)
+#
+# Que hace: documenta 42+ servicios con pasos, herramientas,
+#   vulnerabilidades, dificultad y descripcion para el reporte
+#   guiado. Detecta el servicio/producto/version de un puerto
+#   a partir del XML de nmap.
+#
+# Exporta (se sourcea desde SMOKEME.sh):
+#   Arrays    : SVC_STEPS, SVC_TOOLS, SVC_VULNS,
+#               SVC_DIFFICULTY, SVC_DESCRIPTION
+#   Funciones : get_service_info <puerto> -> SVC/PROD/VER_INFO
+#
+# No es ejecutable por si sola; es un modulo de datos.
 # ============================================================
 
 declare -gA SVC_STEPS
