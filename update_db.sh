@@ -1,6 +1,6 @@
 #!/bin/bash
 # ============================================================
-# update_db.sh - Actualizador de base de datos CVE para usame.sh
+# update_db.sh - Actualizador de base de datos CVE para SMOKEME.sh
 #
 # Actualiza las bases de datos de CVEs (cve_linux.sh y
 # cve_windows.sh) consultando la API NVD.
@@ -10,7 +10,7 @@
 #   ./update_db.sh --linux      # solo Linux
 #   ./update_db.sh --windows    # solo Windows
 #   ./update_db.sh --no-backup  # sin backups
-#   sudo ./usame.sh --update-db # via usame.sh (alternativa)
+#   sudo ./SMOKEME.sh --update-db # via SMOKEME.sh (alternativa)
 #
 # Requiere: curl, python3, gzip
 # ============================================================

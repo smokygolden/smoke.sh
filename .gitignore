@@ -1,5 +1,5 @@
 # ============================================================
-# .gitignore — usame.sh (bash + python3)
+# .gitignore — SMOKEME.sh (bash + python3)
 # ============================================================
 
 # --- Estado del entorno del usuario ---
@@ -9,7 +9,7 @@ hydra.restore
 capitaine-cursors/
 CVE-2026-4480-POC/
 
-# --- Salidas generadas por usame.sh ---
+# --- Salidas generadas por SMOKEME.sh ---
 escaneos/
 
 # --- Compiled Python / cache ---

@@ -1,10 +1,10 @@
-# usame.sh - Documentacion Tecnica Completa
+# SMOKEME.sh - Documentacion Tecnica Completa
 
 ## Resumen General
 
 Script de recon guiado para HTB/Pentesting. Escanea objetivos con nmap, analiza servicios contra una base de conocimiento local, genera reportes automaticos con exploits listos para usar, y ofrece menu interactivo post-escaneo.
 
-**Ubicacion:** `tools/usame.sh` (cualquier directorio, sin rutas absolutas)
+**Ubicacion:** `tools/SMOKEME.sh` (cualquier directorio, sin rutas absolutas)
 **Version actual:** v5.0
 **Autor original:** smokygolden
 
@@ -14,7 +14,7 @@ Script de recon guiado para HTB/Pentesting. Escanea objetivos con nmap, analiza 
 
 ```
 tools/
-  usame.sh                  # Script principal (bash)
+  SMOKEME.sh                  # Script principal (bash)
   lib/
     services.sh             # Base de conocimiento: 42+ servicios con pasos, herramientas, vulns
     cve_linux.sh            # CVEs Linux: ~80 entradas con descripcion, exploit, severidad
@@ -69,45 +69,45 @@ al retornar (bug critico corregido en v5.0 que dejo la base de conocimiento vaci
 
 ```bash
 # Escaneo basico con menu interactivo
-sudo ./usame.sh <target_ip>
+sudo ./SMOKEME.sh <target_ip>
 
 # Modos de escaneo
-sudo ./usame.sh <target> --fast       # Top 1000 puertos, 5min timeout
-sudo ./usame.sh <target> --full       # Todos puertos, scripts agresivos, 30min
-sudo ./usame.sh --stealth <target>    # SYN scan, T2, fragmentado, decoys
-sudo ./usame.sh <target>              # Default: todos puertos, vulners, 15min
+sudo ./SMOKEME.sh <target> --fast       # Top 1000 puertos, 5min timeout
+sudo ./SMOKEME.sh <target> --full       # Todos puertos, scripts agresivos, 30min
+sudo ./SMOKEME.sh --stealth <target>    # SYN scan, T2, fragmentado, decoys
+sudo ./SMOKEME.sh <target>              # Default: todos puertos, vulners, 15min
 
 # Auto-explotacion
-sudo ./usame.sh <target> --auto       # Escaneo + menu interactivo + auto-exploit
+sudo ./SMOKEME.sh <target> --auto       # Escaneo + menu interactivo + auto-exploit
 
 # Batch
-sudo ./usame.sh --batch targets.txt   # 1 IP por linea, escanea todas
+sudo ./SMOKEME.sh --batch targets.txt   # 1 IP por linea, escanea todas
 
 # Post-procesamiento
-sudo ./usame.sh <target> --html       # Exporta HTML con estilos
-sudo ./usame.sh <target> --no-scan    # Re-genera reporte desde XML existente mas reciente
-sudo ./usame.sh --wordlist <target>   # Genera wordlist basada en el target
-sudo ./usame.sh --diff <target>       # Compara 2 escaneos recientes del target
+sudo ./SMOKEME.sh <target> --html       # Exporta HTML con estilos
+sudo ./SMOKEME.sh <target> --no-scan    # Re-genera reporte desde XML existente mas reciente
+sudo ./SMOKEME.sh --wordlist <target>   # Genera wordlist basada en el target
+sudo ./SMOKEME.sh --diff <target>       # Compara 2 escaneos recientes del target
 
 # Tracker
-sudo ./usame.sh --list                # Lista todas las boxes escaneadas
-sudo ./usame.sh --history <ip>        # Historial de una IP
-sudo ./usame.sh --mark <ip> owned     # Marca box como owned/rooted
+sudo ./SMOKEME.sh --list                # Lista todas las boxes escaneadas
+sudo ./SMOKEME.sh --history <ip>        # Historial de una IP
+sudo ./SMOKEME.sh --mark <ip> owned     # Marca box como owned/rooted
 
 # Base de datos
-sudo ./usame.sh --update-db           # Actualiza CVEs desde NVD API (validacion por CPE via lib/nvd_parser.py)
+sudo ./SMOKEME.sh --update-db           # Actualiza CVEs desde NVD API (validacion por CPE via lib/nvd_parser.py)
 ./update_db.sh                        # Alternativa independiente (misma validacion CPE)
 
 # Comandos auxiliares (NO requieren sudo, solo cargan la base de conocimiento local)
-./usame.sh --creds <target>        # Credenciales por defecto para un target (usa XML existente)
-./usame.sh --creds-list            # Lista TODAS las credenciales por defecto
-./usame.sh --creds-search <term>   # Busca credenciales por servicio/termino (ej: mysql, "admin\|guest")
-./usame.sh --suid-list             # Lista binarios SUID explotables (GTFOBins)
-./usame.sh --sudo-escalation       # Escalada via sudo (GTFOBins)
-./usame.sh --wordlist [cat]        # Wordlists por escenario (lista categorias si se omite)
+./SMOKEME.sh --creds <target>        # Credenciales por defecto para un target (usa XML existente)
+./SMOKEME.sh --creds-list            # Lista TODAS las credenciales por defecto
+./SMOKEME.sh --creds-search <term>   # Busca credenciales por servicio/termino (ej: mysql, "admin\|guest")
+./SMOKEME.sh --suid-list             # Lista binarios SUID explotables (GTFOBins)
+./SMOKEME.sh --sudo-escalation       # Escalada via sudo (GTFOBins)
+./SMOKEME.sh --wordlist [cat]        # Wordlists por escenario (lista categorias si se omite)
 
 # Modo interactivo (sin argumentos)
-sudo ./usame.sh
+sudo ./SMOKEME.sh
 ```
 
 ---

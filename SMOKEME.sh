@@ -1,32 +1,32 @@
 #!/bin/bash
 # ============================================================
-# usame.sh - Recon Guiado para Hack The Box v5.0
+# SMOKEME.sh - Recon Guiado para Hack The Box v5.0
 # Escanea, detecta servicios, genera reporte guiado
 # con CVEs, auto-explotacion, privesc, post-explotacion,
 # stealth mode, batch, wordlist, tracker, diff, auto-update.
 #
 # Uso:
-#   sudo ./usame.sh <target>
-#   sudo ./usame.sh <target> --fast --html
-#   sudo ./usame.sh --stealth <target>
-#   sudo ./usame.sh --batch targets.txt
+#   sudo ./SMOKEME.sh <target>
+#   sudo ./SMOKEME.sh <target> --fast --html
+#   sudo ./SMOKEME.sh --stealth <target>
+#   sudo ./SMOKEME.sh --batch targets.txt
 #
 #   # Verbosidad (muestra detalle paso a paso sin cortar la automatizacion)
-#   sudo ./usame.sh <target> --verbose      # o -v
-#   sudo ./usame.sh --batch targets.txt -v
+#   sudo ./SMOKEME.sh <target> --verbose      # o -v
+#   sudo ./SMOKEME.sh --batch targets.txt -v
 #
 #   # Modos auxiliares (NO requieren sudo)
-#   ./usame.sh --creds <target>         # credenciales por defecto (usa XML existente)
-#   ./usame.sh --creds-list             # listar todas las credenciales
-#   ./usame.sh --creds-search TERM      # buscar credenciales
-#   ./usame.sh --suid-list              # listar binarios SUID explotables
-#   ./usame.sh --sudo-escalation        # listar escaladas via sudo
-#   ./usame.sh --wordlist [cat]         # wordlists por escenario
+#   ./SMOKEME.sh --creds <target>         # credenciales por defecto (usa XML existente)
+#   ./SMOKEME.sh --creds-list             # listar todas las credenciales
+#   ./SMOKEME.sh --creds-search TERM      # buscar credenciales
+#   ./SMOKEME.sh --suid-list              # listar binarios SUID explotables
+#   ./SMOKEME.sh --sudo-escalation        # listar escaladas via sudo
+#   ./SMOKEME.sh --wordlist [cat]         # wordlists por escenario
 #
-#   sudo ./usame.sh --list
-#   sudo ./usame.sh --diff <target>
-#   sudo ./usame.sh --update-db
-#   sudo ./usame.sh  (modo interactivo)
+#   sudo ./SMOKEME.sh --list
+#   sudo ./SMOKEME.sh --diff <target>
+#   sudo ./SMOKEME.sh --update-db
+#   sudo ./SMOKEME.sh  (modo interactivo)
 # ============================================================
 #=================================================================banner==
 SMOKE_BANNER='   _____ __  _______  __ __ ______        __  
@@ -872,7 +872,7 @@ generate_wordlist() {
     local outfile="$2"
     
     cat > "$outfile" << 'HEADER'
-# Wordlist generada por usame.sh v5.0
+# Wordlist generada por SMOKEME.sh v5.0
 # Basada en: hostname, dominio, servicios, patrones HTB
 HEADER
 
@@ -1436,7 +1436,7 @@ auto_exploit_all() {
 generate_metasploit_rc() {
     local MSF_RC="$OUTPUT_DIR/msf_${TARGET}_${TS}.rc"
     cat > "$MSF_RC" << MSFEOF
-# usame.sh v5.0 - Metasploit Resource Script
+# SMOKEME.sh v5.0 - Metasploit Resource Script
 # Target: $TARGET | Fecha: $(date '+%Y-%m-%d %H:%M:%S')
 # Generado automaticamente por auto-exploit
 #
@@ -2246,7 +2246,7 @@ if [ "$DO_CREDS" -eq 1 ]; then
             echo ""
         done
     else
-        echo -e "${Y}  No se encontro XML del target. Ejecuta primero: ${G}./usame.sh $TARGET${W}"
+        echo -e "${Y}  No se encontro XML del target. Ejecuta primero: ${G}./SMOKEME.sh $TARGET${W}"
     fi
     exit 0
 fi
