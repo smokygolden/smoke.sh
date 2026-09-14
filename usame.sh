@@ -73,6 +73,44 @@ show_banner() {
     done <<< "$SMOKE_BANNER"
 }
 
+# ------------------------------------------------------------
+# DEPENDENCIAS: avisa que falta antes de fallar a mitad del scan
+# ------------------------------------------------------------
+check_dependencies() {
+    local cmd desc missing=0
+
+    if [ "${BASH_VERSINFO[0]:-0}" -lt 4 ]; then
+        print_err "bash >= 4 requerido (tienes $BASH_VERSION)"
+        missing=1
+    fi
+
+    for cmd in nmap grep sort comm date hostname; do
+        if ! command -v "$cmd" >/dev/null 2>&1; then
+            print_err "Falta herramienta obligatoria: $cmd"
+            missing=1
+        fi
+    done
+
+    if [ "$missing" -eq 1 ]; then
+        echo ""
+        print_info "Revisa REQUIREMENTS.md para instalarlas"
+        exit 1
+    fi
+
+    # Opcionales: solo avisan
+    for cmd in python3 curl firefox lolcat; do
+        if ! command -v "$cmd" >/dev/null 2>&1; then
+            case "$cmd" in
+                python3) desc="modo --html y --update-db" ;;
+                curl)    desc="modo --update-db y --web" ;;
+                firefox) desc="modo --web" ;;
+                lolcat)  desc="banner en colores (usa rainbow ANSI)" ;;
+            esac
+            print_warn "$cmd no instalado - $desc"
+        fi
+    done
+}
+
 usage() {
     show_banner
     echo "Uso: sudo $0 <target_ip> [opciones]"
@@ -2102,6 +2140,7 @@ done
 # Dispatch
 show_banner
 echo ""
+check_dependencies
 if [ "$DO_LIST" -eq 1 ]; then
     load_libraries
     tracker_list
